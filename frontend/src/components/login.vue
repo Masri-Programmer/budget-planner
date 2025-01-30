@@ -28,7 +28,7 @@ const password = ref<string>("");
 const submitLogin = async () => {
   try {
     await login(email.value, password.value);
-    router.push("/budget-planner/dashboard");
+    router.push("/dashboard");
   } catch (error) {
     alert("Login failed!");
   }

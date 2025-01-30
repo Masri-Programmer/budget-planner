@@ -1,1 +1,87 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+.expense-container {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+    /* Dark gray */
+    border-bottom: 2px solid #2d3748;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+    color: #4a5568;
+    /* Gray text */
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    /* Light gray border */
+}
+
+ul li:last-child {
+    border-bottom: none;
+}
+
+ul li strong {
+    font-weight: bold;
+    color: #2b6cb0;
+    /* Blue for expenses and subcategories */
+}
+
+ul li ul {
+    padding-left: 1.5rem;
+}
+
+ul li ul li {
+    font-size: 0.9rem;
+    color: #718096;
+    /* Lighter gray for inner lists */
+}
+
+ul li ul li span {
+    font-weight: normal;
+    color: #e53e3e;
+    /* Red for values like percentages */
+}
+
+p {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.expense-container h1,
+.expense-container p {
+    margin: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .expense-container {
+        padding: 1rem;
+    }
+
+    h1 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+}

@@ -1,34 +1,36 @@
 // src/store/auth.ts
-import { ref } from 'vue';
-import axios from 'axios';
+import axios from "axios";
+import { useStorage } from "@vueuse/core";
 
 interface User {
   id: number;
   email: string;
   name: string;
-  // Add any additional user fields you expect to use
 }
 
 export const useAuth = () => {
-  const user = ref<User | null>(null);
-  const token = ref<string | null>(localStorage.getItem('token'));
+  const user = useStorage<User | null>("user", null);
+  const token = useStorage<string | null>("token", null);
+
+  if (token.value) {
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
+  }
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post<{ token: string, user: User }>(
-        'http://localhost:8000/api/login',
+      const response = await axios.post<{ token: string; user: User }>(
+        "http://localhost:8000/api/login",
         { email, password }
       );
-
       user.value = response.data.user;
       token.value = response.data.token;
 
-      localStorage.setItem('token', token.value);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token.value}`;
+      axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
 
       return response;
     } catch (error) {
-      console.error('Login failed:', error);
+      window.location.href = "/"
+      console.error("Login failed:", error);
       throw error;
     }
   };
@@ -36,16 +38,16 @@ export const useAuth = () => {
   const logout = () => {
     user.value = null;
     token.value = null;
-    localStorage.removeItem('token');
-    delete axios.defaults.headers.common['Authorization'];
+
+    delete axios.defaults.headers.common["Authorization"];
   };
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get<User>('http://localhost:8000/api/user');
+      const response = await axios.get<User>("http://localhost:8000/api/user");
       user.value = response.data;
     } catch (error) {
-      console.error('User fetch failed:', error);
+      console.error("User fetch failed:", error);
     }
   };
 
@@ -54,6 +56,6 @@ export const useAuth = () => {
     token,
     login,
     logout,
-    fetchUser
+    fetchUser,
   };
 };

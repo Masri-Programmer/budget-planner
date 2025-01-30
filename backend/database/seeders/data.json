@@ -1,0 +1,241 @@
+{
+    "categories": [
+        {
+            "name": "Grundlegende Ausgaben",
+            "expected": "50-60",
+            "expenses": [
+                {
+                    "subcategory": "Wohnen",
+                    "expected": "25-30",
+                    "expense": "Miete",
+                    "amount": 670,
+                    "bank": "Gewoba"
+                },
+                {
+                    "subcategory": "Lebensmittel",
+                    "expected": "10-15",
+                    "expense": "Essen",
+                    "amount": 300,
+                    "bank": "Octopus"
+                },
+                {
+                    "subcategory": "Transportation",
+                    "expected": "5-10",
+                    "expense": "Bus & Bolt",
+                    "amount": 15,
+                    "bank": "DB Ticket"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Benzin",
+                    "amount": 90,
+                    "bank": "ADC Auto"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Autoversicherung",
+                    "amount": 90,
+                    "bank": "ADC Auto"
+                },
+                {
+                    "subcategory": "Gesundheit",
+                    "expected": "5-10",
+                    "expense": "Gym",
+                    "amount": 45,
+                    "bank": "Basic Fit"
+                },
+                {
+                    "subcategory": "Sonstige Grundausgaben",
+                    "expected": "",
+                    "expense": "Strom und Gas",
+                    "amount": 100,
+                    "bank": "Octopus"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Internet",
+                    "amount": 50,
+                    "bank": "Vodafone"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Handy",
+                    "amount": 80,
+                    "bank": "O2"
+                }
+            ]
+        },
+        {
+            "name": "Ersparnisse & Investitionen",
+            "expected": "20-30",
+            "expenses": [
+                {
+                    "subcategory": "Langfristige Ersparnisse",
+                    "expected": "",
+                    "expense": "Rente Plus",
+                    "amount": 200,
+                    "bank": "C24"
+                },
+                {
+                    "subcategory": "Kurzfristige Ersparnisse",
+                    "expected": "",
+                    "expense": "Verbleibende Ersparnisse",
+                    "amount": 1283,
+                    "bank": "C24"
+                },
+                {
+                    "subcategory": "Trading",
+                    "expense": "Eli Lilly",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                },
+                {
+                    "expense": "Intuitive Surgical",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                },
+                {
+                    "expense": "TSMC (ADR)",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                },
+                {
+                    "expense": "Physical Gold USD (Acc)",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                },
+                {
+                    "expense": "NVIDIA",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                },
+                {
+                    "expense": "Core S&P 500 USD (Acc)",
+                    "amount": 10,
+                    "bank": "Trading Republic"
+                }
+            ]
+        },
+        {
+            "name": "Lifestyle & Freizeit",
+            "expected": "10-20",
+            "expenses": [
+                {
+                    "subcategory": "Unterhaltung & Genuss",
+                    "expected": "5-10",
+                    "expense": "Ausgehen",
+                    "amount": 100,
+                    "bank": ""
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Amazon",
+                    "amount": 4.5,
+                    "bank": "Amazon"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Netflix",
+                    "amount": 4.99,
+                    "bank": "Amazon"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Friseur",
+                    "amount": 30,
+                    "bank": ""
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Reisen",
+                    "amount": 250,
+                    "bank": "DB Ticket"
+                },
+                {
+                    "subcategory": "Kleidung & Einkäufe",
+                    "expected": "5",
+                    "expense": "Kleidung",
+                    "amount": 50,
+                    "bank": "Otto"
+                },
+                {
+                    "subcategory": "Hobbys & Persönliche Entwicklung",
+                    "expected": "5",
+                    "expense": "Watch Fit 3",
+                    "amount": 10,
+                    "bank": "Otto"
+                },
+                {
+                    "subcategory": "",
+                    "expected": "",
+                    "expense": "Laptop",
+                    "amount": 22,
+                    "bank": "Paypal"
+                }
+            ]
+        },
+        {
+            "name": "Einnahmen",
+            "expected": "100",
+            "expenses": [
+                {
+                    "subcategory": "",
+                    "expense": "Bafög",
+                    "expected": "",
+                    "amount": 855,
+                    "bank": ""
+                },
+                {
+                    "subcategory": "",
+                    "expense": "Arbeit (ungefähr)",
+                    "expected": "",
+                    "amount": 300,
+                    "bank": ""
+                },
+                {
+                    "subcategory": "",
+                    "expense": "Job",
+                    "expected": "",
+                    "amount": 2300,
+                    "bank": ""
+                },
+                {
+                    "subcategory": "",
+                    "expense": "Kindergeld",
+                    "expected": "",
+                    "amount": 0,
+                    "bank": ""
+                }
+            ]
+        }
+    ],
+    "banks": [
+        "Basic Fit",
+        "Otto",
+        "Vodafone",
+        "Octopus",
+        "Gewoba",
+        "Flyerheaven",
+        "Paypal",
+        "Sparkasse",
+        "Bolt",
+        "Tap Tap Send",
+        "ADC Auto",
+        "Trading Republic",
+        "Netflix",
+        "DB Ticket",
+        "Steuererklärung",
+        "Benzin",
+        "Deutsche Bahn",
+        "GoFundMe",
+        "PC"
+    ]
+}

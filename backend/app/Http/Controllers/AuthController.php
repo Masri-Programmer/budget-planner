@@ -23,7 +23,7 @@ class AuthController extends Controller
         }
 
         // Create API token
-        $token = $user->createToken('YourAppName')->plainTextToken;
+        $token = $user->createToken('budget-planner')->plainTextToken;
 
         return response()->json([
             'token' => $token,
