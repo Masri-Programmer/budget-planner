@@ -9,11 +9,12 @@ export interface Expense {
   expense: string;
   amount: string;
   amount_percent?: string;
-  bank?: Bank;
+  bank: Bank;
   expected?: string;
 }
 
 export interface Category {
+  id:Number,
   name: string;
   expected: string;
   expenses: Expense[];

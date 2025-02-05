@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Expense;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Http\Response;
 class CategoryController extends Controller
 {
     /**
@@ -18,49 +18,47 @@ class CategoryController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'expected' => 'nullable|numeric',
+        ]);
+
         $category = Category::create([
-            'name' => $request->name,
-            'expected' => $request->expected,
+            'name' => $validated['name'],
+            'expected' => $validated['expected'] ?? null,
             'user_id' => $request->user()->id,
         ]);
 
-        return response()->json($category);
+        return response()->json($category, Response::HTTP_CREATED);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return response()->json($category->load('expenses.bank'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $this->authorize('update', $category);
+
+        $validated = $request->validate([
+            'name' => 'sometimes|string|max:255',
+            'expected' => 'sometimes|numeric',
+        ]);
+
+        $category->update($validated);
+
+        return response()->json($category);
     }
 
     /**
@@ -68,7 +66,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->authorize('delete', $category);
+
         $category->delete();
-        return response()->json(null, 204);
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }

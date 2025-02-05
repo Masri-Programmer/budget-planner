@@ -30,4 +30,20 @@ class AuthController extends Controller
             'user' => $user
         ]);
     }
+
+    public function checkToken(Request $request)
+    {
+        try {
+            $user = $request->user();
+
+            if (!$user) {
+                return response()->json(['message' => 'Unauthorized'], 401);
+            }
+
+            return response()->json(['message' => 'Token is valid', 'user' => $user], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+    }
+
 }

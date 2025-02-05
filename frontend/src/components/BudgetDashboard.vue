@@ -22,11 +22,16 @@
       :key="category.name"
       class="mb-8 p-4 bg-gray-800 dark:bg-gray-800 rounded-xl shadow-sm border border-gray-700"
     >
-      <h2 class="text-2xl font-semibold text-gray-300 dark:text-gray-300 mb-4">
-        {{ category.name }}
-        <span class="text-indigo-400 text-lg"
-          >({{ category.expected || "N/A" }}% expected)</span
-        >
+      <h2 class="text-2xl font-semibold text-gray-300 dark:text-gray-300 mb-4 flex items-center">
+        <input
+          type="text"
+          name=""
+          v-model="category.name"
+          id=""
+          class="grow outline-none"
+          @change="updateCategory(category)"
+        />
+        <div class="text-indigo-400 text-lg">( <input type="number" v-model="category.expected" class="outline-none w-6">% )</div>
       </h2>
       <table class="w-full border-collapse">
         <thead>
@@ -60,46 +65,68 @@
             class="hover:bg-indigo-700 dark:hover:bg-purple-700 transition"
           >
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="relative flex border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none w-full"
             >
-              {{ expense.subcategory }}
-              <span v-if="expense.expected" class="text-indigo-400"
-                >({{ expense.expected }}%)</span
-              >
+              <input
+                type="text"
+                v-model="expense.subcategory"
+                class="outline-none grow"
+              />
+              <span v-if="expense.expected" class="text-indigo-400">
+                <input
+                  type="text"
+                  v-model="expense.expected"
+                  class="w-12 outline-none"
+                />
+                <span class="absolute inset-y-2.5 right-1.5 text-md">%</span>
+              </span>
+            </td>
+            <td class="text-sm text-gray-300 dark:text-gray-300">
+              <input
+                type="text"
+                name="expense"
+                id=""
+                v-model="expense.expense"
+                class="border border-gray-700 px-4 py-3 outline-none w-full"
+              />
+            </td>
+            <td class="relative text-sm text-gray-300 dark:text-gray-300">
+              <input
+                type="number"
+                v-model="expense.amount"
+                class="border border-gray-700 px-4 py-3 w-full outline-none"
+              />
+              <span class="absolute inset-y-2.5 right-1.5 text-md">€</span>
+            </td>
+            <td class="relative text-sm text-gray-300 dark:text-gray-300">
+              <input
+                type="number"
+                step="0.00000001"
+                v-model="expense.amount_percent"
+                class="border border-gray-700 px-4 py-3 w-full outline-none"
+              />
+              <span class="absolute inset-y-2.5 right-1.5 text-md">%</span>
+            </td>
+            <td class="text-sm text-gray-300 dark:text-gray-300">
+              <input
+                type="text"
+                v-model="expense.bank.name"
+                class="border border-gray-700 px-4 py-3 w-full outline-none"
+              />
             </td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
-            >
-              {{ expense.expense }}
-            </td>
-            <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
-            >
-              {{ expense.amount }}€
-            </td>
-            <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
-            >
-              {{ expense.amount_percent }}%
-            </td>
-            <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
-            >
-              {{ expense.bank?.name || "-" }}
-            </td>
-            <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             ></td>
           </tr>
           <tr>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             ></td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             ></td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             >
               {{
                 category.expenses
@@ -111,7 +138,7 @@
               }}€
             </td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             >
               {{
                 category.expenses
@@ -124,10 +151,10 @@
               }}%
             </td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             ></td>
             <td
-              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300"
+              class="border border-gray-700 px-4 py-3 text-sm text-gray-300 dark:text-gray-300 outline-none"
             ></td>
           </tr>
         </tbody>
@@ -149,7 +176,7 @@
         <span class="text-indigo-400">{{ totalIncome.toFixed(2) }} €</span>
       </h2>
     </div>
-   <div v-html="expenseHtml" class="expense-container"></div>
+    <div v-html="expenseHtml" class="expense-container"></div>
   </div>
 </template>
 
@@ -159,9 +186,16 @@ import axios from "axios";
 import ToggleTheme from "./ToggleTheme.vue";
 import { useAuth } from "../auth.ts";
 import { generateExpenseHtml } from "./generateExpenseHtml";
-import type { Bank, Expense, Category } from "../assets/types.ts";
+import type { Category } from "../assets/types.ts";
+import { useStorage } from "@vueuse/core";
+import { useToast } from "vue-toastification";
+import { useDebounce } from "@vueuse/core";
 
-const { logout } = useAuth();
+const toast = useToast();
+const token = useStorage<string | null>("token", null);
+axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
+const user = useStorage<string | null>("user", null);
+const { logout, checkTokenValidity } = useAuth();
 
 const categories = ref<Category[]>([]);
 const totalIncome = ref<number>(0);
@@ -185,7 +219,7 @@ const fetchCategories = async () => {
       });
     });
   } catch (error) {
-    console.error("Error fetching categories:", error);
+    toast.error("Error fetching categories");
   }
 };
 
@@ -201,8 +235,31 @@ const addCategory = async () => {
       newCategory
     );
     categories.value.push(response.data);
+    toast.success("Category added successfully!"); // Success toast
   } catch (error) {
     console.error("Error adding category:", error);
+    toast.error("Failed to add category!"); // Error toast
+  }
+};
+
+const updateCategory = async (category: Category) => {
+  try {
+    await axios.put(
+      `http://localhost:8000/api/categories/${category.id}`,
+      {
+        name: category.name,
+        expected:parseInt(category.expected),
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      }
+    );
+    toast.success("Category updated successfully!"); // Success toast
+  } catch (error) {
+    console.error("Error updating category:", error);
+    toast.error("Failed to update category!"); // Error toast
   }
 };
 
@@ -210,11 +267,28 @@ const deleteCategory = async (name: string) => {
   try {
     await axios.delete(`http://localhost:8000/api/categories/${name}`);
     categories.value = categories.value.filter((cat) => cat.name !== name);
+    toast.success("Category deleted successfully!"); // Success toast
   } catch (error) {
     console.error("Error deleting category:", error);
+    toast.error("Failed to delete category!"); // Error toast
   }
 };
 onMounted(() => {
   fetchCategories();
+  checkTokenValidity(user.value.token);
 });
 </script>
+
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+</style>

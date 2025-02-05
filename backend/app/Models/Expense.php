@@ -22,6 +22,9 @@ class Expense extends Model
 
     public function bank(): BelongsTo
     {
-        return $this->belongsTo(Bank::class);
+        return $this->belongsTo(Bank::class)->withDefault([
+            'id' => null,
+            'name' => '-'
+        ]);
     }
 }
