@@ -6,6 +6,8 @@ use App\Models\Expense;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Log;
+
 class CategoryController extends Controller
 {
     /**
@@ -32,6 +34,8 @@ class CategoryController extends Controller
             'expected' => $validated['expected'] ?? null,
             'user_id' => $request->user()->id,
         ]);
+        $this->authorize('create', Category::class); 
+
 
         return response()->json($category, Response::HTTP_CREATED);
     }

@@ -2,25 +2,25 @@
     "categories": [
         {
             "name": "Grundlegende Ausgaben",
-            "expected": "50-60",
+            "expected": 55,
             "expenses": [
                 {
                     "subcategory": "Wohnen",
-                    "expected": "25-30",
+                    "expected": 25,
                     "expense": "Miete",
                     "amount": 670,
                     "bank": "Gewoba"
                 },
                 {
                     "subcategory": "Lebensmittel",
-                    "expected": "10-15",
+                    "expected": 10,
                     "expense": "Essen",
                     "amount": 300,
                     "bank": "Octopus"
                 },
                 {
                     "subcategory": "Transportation",
-                    "expected": "5-10",
+                    "expected": 5,
                     "expense": "Bus & Bolt",
                     "amount": 15,
                     "bank": "DB Ticket"
@@ -41,7 +41,7 @@
                 },
                 {
                     "subcategory": "Gesundheit",
-                    "expected": "5-10",
+                    "expected": 5,
                     "expense": "Gym",
                     "amount": 45,
                     "bank": "Basic Fit"
@@ -71,7 +71,7 @@
         },
         {
             "name": "Ersparnisse & Investitionen",
-            "expected": "20-30",
+            "expected": 25,
             "expenses": [
                 {
                     "subcategory": "Langfristige Ersparnisse",
@@ -122,11 +122,11 @@
         },
         {
             "name": "Lifestyle & Freizeit",
-            "expected": "10-20",
+            "expected": 15,
             "expenses": [
                 {
                     "subcategory": "Unterhaltung & Genuss",
-                    "expected": "5-10",
+                    "expected": 7,
                     "expense": "Ausgehen",
                     "amount": 100,
                     "bank": ""
@@ -161,14 +161,14 @@
                 },
                 {
                     "subcategory": "Kleidung & Einkäufe",
-                    "expected": "5",
+                    "expected": 5,
                     "expense": "Kleidung",
                     "amount": 50,
                     "bank": "Otto"
                 },
                 {
                     "subcategory": "Hobbys & Persönliche Entwicklung",
-                    "expected": "5",
+                    "expected": 5,
                     "expense": "Watch Fit 3",
                     "amount": 10,
                     "bank": "Otto"

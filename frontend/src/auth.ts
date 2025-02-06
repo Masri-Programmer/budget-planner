@@ -10,7 +10,13 @@ interface User {
 }
 
 export const useAuth = () => {
-  const user = useStorage<string | null>("user", null);
+const user = useStorage<User | null>("user", null, undefined, {
+  serializer: {
+    read: (v) => (v ? JSON.parse(v) : null),
+    write: (v) => JSON.stringify(v),
+  },
+});
+
   const token = useStorage<string | null>("token", null);
   const toast = useToast();
 
@@ -24,7 +30,7 @@ export const useAuth = () => {
         "http://localhost:8000/api/login",
         { email, password }
       );
-      user.value = JSON.stringify(response.data.user);
+      user.value =response.data.user;
       token.value = response.data.token;
 
       axios.defaults.headers.common["Authorization"] = `Bearer ${token.value}`;
@@ -50,7 +56,7 @@ export const useAuth = () => {
   const fetchUser = async () => {
     try {
       const response = await axios.get<User>("http://localhost:8000/api/user");
-      user.value = JSON.stringify(response.data);
+      user.value =response.data;
       toast.success("User data fetched successfully!");
     } catch (error) {
       console.error("User fetch failed:", error);

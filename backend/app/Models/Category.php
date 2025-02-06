@@ -11,7 +11,7 @@ use App\Models\Expense;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'expected'];
+    protected $fillable = ['name', 'expected', 'user_id'];
 
     public function user(): BelongsTo
     {
