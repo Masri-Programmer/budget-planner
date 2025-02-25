@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useStorage } from "@vueuse/core";
 import { useToast } from "vue-toastification"; // Import useToast
-
+axios.defaults.baseURL = 'http://localhost:8090'
 interface User {
   id: number;
   email: string;
@@ -27,7 +27,7 @@ const user = useStorage<User | null>("user", null, undefined, {
   const login = async (email: string, password: string) => {
     try {
       const response = await axios.post<{ token: string; user: User }>(
-        "http://localhost:8000/api/login",
+        "/api/login",
         { email, password }
       );
       user.value =response.data.user;
@@ -55,7 +55,7 @@ const user = useStorage<User | null>("user", null, undefined, {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get<User>("http://localhost:8000/api/user");
+      const response = await axios.get<User>("/api/user");
       user.value =response.data;
       toast.success("User data fetched successfully!");
     } catch (error) {
@@ -67,7 +67,7 @@ const user = useStorage<User | null>("user", null, undefined, {
   const checkTokenValidity = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8000/api/check-token",
+        "/api/check-token",
         {
           headers: {
             Authorization: `Bearer ${token.value}`,
